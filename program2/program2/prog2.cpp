@@ -54,7 +54,9 @@ int main()
 		else if (choice == "2")
 		{
 			cout << "Enter an id to edit : ";
-			updateCust(cust, count, cust_edit, findCust(cust, count, cust_id));
+			cin >> cust_edit;
+
+			updateCust(cust, count, cust_edit, findCust(cust, count, cust_edit));
 		}
 		else if (choice == "3")
 		{
@@ -106,7 +108,7 @@ int main()
 string menu(string & choice)
 {
 	bool isValid = false;
-
+	cout << endl;
 	cout << "           Menu of choices\n";
 	cout << "+++++++++++++++++++++++++++++++++++++++\n";
 	cout << "1. Enter new account information\n";
@@ -117,6 +119,7 @@ string menu(string & choice)
 	do
 	{
 		cout << "Enter a choice : ";
+		//cin.ignore();
 		getline(cin, choice);
 		if (choice == "1" || choice == "2" || choice == "3" || choice == "4" || choice == "5")
 		{
@@ -147,10 +150,15 @@ void addCust(Customer cust[], int count)
 	
 	int i = count;
 	//add id, name, zip, balance, pmtDate
-
-	cout << "Add an ID for the new customer : ";
-	cin >> cust[i].id;
-	//validate
+	do
+	{
+		cout << "Add an ID for the new customer : ";
+		cin >> cust[i].id;
+		if (cust[i].id < 0)
+		{
+			cout << "Enter an ID that is greater than -1\n";
+		}
+	} while (cust[i].id < 0);
 
 	cout << "Add a name for the new customer : ";
 	cin.ignore();
@@ -159,9 +167,15 @@ void addCust(Customer cust[], int count)
 	cout << "Add a zip for the new customer : ";
 	cin >> cust[i].zip;
 
-	cout << "Add a balance for the new customer : ";
-	cin >> cust[i].balance;
-	//validate
+	do
+	{
+		cout << "Add a balance for the new customer : ";
+		cin >> cust[i].balance;
+		if (cust[i].balance < 0)
+		{
+			cout << "Enter a balance that is greater than -1\n";
+		}
+	} while (cust[i].balance < 0);
 
 	cout << "Add a payment date for the new customer : ";
 	cin >> cust[i].pmtDate;
@@ -175,33 +189,35 @@ void addCust(Customer cust[], int count)
 // Class: CS 2020, Spring 2018
 // Parameters:	
 // Returns: 
-void updateCust(Customer cust[], int count, int cust_edit, int findcust)
+void updateCust(Customer cust[], int count, int cust_edit, int foundcust)
 {
-	if (findcust != -1)
+	if (foundcust != -1)
 	{
 		int i = count;
-		//add id, name, zip, balance, pmtDate
+		//edit name, zip, balance, pmtDate
 
-		cout << "Add an ID for the new customer : ";
-		cin >> cust[i].id;
+		cout << "Add a new name for the customer " << cust[foundcust].id << " : ";
+		//cin.ignore();
+		getline(cin, cust[foundcust].name);
+
+		cout << "Add a new zip for the customer " << cust[foundcust].id << " : ";
+		cin >> cust[foundcust].zip;
+
+		cout << "Add a new balance for the customer " << cust[foundcust].id << " : ";
+		cin >> cust[foundcust].balance;
 		//validate
 
-		cout << "Add a name for the new customer : ";
-		cin.ignore();
-		getline(cin, cust[i].name);
-
-		cout << "Add a zip for the new customer : ";
-		cin >> cust[i].zip;
-
-		cout << "Add a balance for the new customer : ";
-		cin >> cust[i].balance;
-		//validate
-
-		cout << "Add a payment date for the new customer : ";
-		cin >> cust[i].pmtDate;
+		cout << "Add a new payment date for the customer " << cust[foundcust].id << " : ";
+		cin >> cust[foundcust].pmtDate;
 
 		cin.ignore();
 	}
+	else
+	{
+		cout << "id not found\n";
+	}
+
+	
 }
 
 

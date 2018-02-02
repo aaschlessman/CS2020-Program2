@@ -1,5 +1,5 @@
 // Program 2
-// Description: 
+// Description: structures
 // Programmer: Aaron Schlessman
 // Class: CS 2020 - 9:30 AM, Spring 2018
 
@@ -42,15 +42,19 @@ int main()
 	int cust_edit = 0;
 	string choice = "";
 
+	//validation
 	do
 	{
+		//sorts and shows menu
 		sortCust(cust, count);
 		menu(choice);
+		//choice 1
 		if (choice == "1")
 		{
 			addCust(cust, count);
 			count++;
 		}
+		//choice 2
 		else if (choice == "2")
 		{
 			cout << "Enter an id to edit : ";
@@ -58,12 +62,15 @@ int main()
 
 			updateCust(cust, count, cust_edit, findCust(cust, count, cust_edit));
 		}
+		//choice 3
 		else if (choice == "3")
 		{
 			displayCust(cust, count);
 		}
+		//choice 4
 		else if (choice == "4")
 		{
+			//choice 4 validation
 			cout << "Enter an id : ";
 			cin >> cust_id;
 			cust_index = findCust(cust, count, cust_id);
@@ -83,6 +90,7 @@ int main()
 				cout << "No customer found\n";
 			}
 		}
+		//choice 5
 		else
 		{
 			cout << endl;
@@ -100,11 +108,11 @@ int main()
 }
 
 // Function: menu
-// Description: 
+// Description: display menu choice
 // Programmer: Aaron Schlessman
 // Class: CS 2020, Spring 2018
-// Parameters:	
-// Returns: 
+// Parameters:	choice - user input
+// Returns: valid choice as string
 string menu(string & choice)
 {
 	bool isValid = false;
@@ -140,16 +148,18 @@ string menu(string & choice)
 
 
 // Function: addCust
-// Description: 
+// Description: adds a new customer to structure
 // Programmer: Aaron Schlessman
 // Class: CS 2020, Spring 2018
-// Parameters:	
-// Returns: 
+// Parameters:	cust[] array of structure Customer
+//				count - int representation of the number of id's
+// Returns: void
 void addCust(Customer cust[], int count)
 {
 	
 	int i = count;
 	//add id, name, zip, balance, pmtDate
+	//validation for id
 	do
 	{
 		cout << "Add an ID for the new customer : ";
@@ -167,6 +177,7 @@ void addCust(Customer cust[], int count)
 	cout << "Add a zip for the new customer : ";
 	cin >> cust[i].zip;
 
+	//validation for balance
 	do
 	{
 		cout << "Add a balance for the new customer : ";
@@ -184,11 +195,14 @@ void addCust(Customer cust[], int count)
 }
 
 // Function: updateCust
-// Description: 
+// Description: changes an existing customer to users choice
 // Programmer: Aaron Schlessman
 // Class: CS 2020, Spring 2018
-// Parameters:	
-// Returns: 
+// Parameters:	cust[] array of structure Customer
+//				count - int representation of the number of id's
+//				cust_edit - the user input to edit
+//				foundcust - the customers id number that needs to be edited
+// Returns:		void
 void updateCust(Customer cust[], int count, int cust_edit, int foundcust)
 {
 	if (foundcust != -1)
@@ -196,24 +210,25 @@ void updateCust(Customer cust[], int count, int cust_edit, int foundcust)
 		int i = count;
 		//edit name, zip, balance, pmtDate
 
-		cout << "Add a new name for the customer " << cust[foundcust].id << " : ";
+		cout << "Add a new name for customer " << cust[foundcust].id << " : ";
 		//cin.ignore();
 		getline(cin, cust[foundcust].name);
 
-		cout << "Add a new zip for the customer " << cust[foundcust].id << " : ";
+		cout << "Add a new zip for customer " << cust[foundcust].id << " : ";
 		cin >> cust[foundcust].zip;
 
+		//validation for new balance
 		do
 		{
-			cout << "Add a new balance for the customer " << cust[foundcust].id << " : ";
+			cout << "Add a new balance for customer " << cust[foundcust].id << " : ";
 			cin >> cust[foundcust].balance;
 			if (cust[foundcust].balance < 0)
 			{
-				cout << "Enter an ID that is greater than -1\n";
+				cout << "Enter a balance that is greater than -1\n";
 			}
 		} while (cust[foundcust].balance < 0);
 
-		cout << "Add a new payment date for the customer " << cust[foundcust].id << " : ";
+		cout << "Add a new payment date for customer " << cust[foundcust].id << " : ";
 		cin >> cust[foundcust].pmtDate;
 
 		cin.ignore();
@@ -228,11 +243,12 @@ void updateCust(Customer cust[], int count, int cust_edit, int foundcust)
 
 
 // Function: displayCust
-// Description: 
+// Description: displays a tubular list of customers
 // Programmer: Aaron Schlessman
 // Class: CS 2020, Spring 2018
-// Parameters:	
-// Returns: 
+// Parameters:	cust[] array of structure Customer
+//				count - int representation of the number of id's
+// Returns: void
 void displayCust(Customer cust[], int count)
 {
 	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
@@ -250,7 +266,9 @@ void displayCust(Customer cust[], int count)
 // Description: 
 // Programmer: Aaron Schlessman
 // Class: CS 2020, Spring 2018
-// Parameters:	
+// Parameters:	cust[] array of structure Customer
+//				count - int representation of the number of id's
+//				cust_id - the id needed to be found
 // Returns: int
 int findCust(Customer cust[], int count, int cust_id)
 {
@@ -286,11 +304,12 @@ int findCust(Customer cust[], int count, int cust_id)
 
 
 // Function: sortCust
-// Description: bubble sort
+// Description: bubble sorts array of structure
 // Programmer: Aaron Schlessman
 // Class: CS 2020, Spring 2018
-// Parameters:	
-// Returns: 
+// Parameters:	cust[] array of structure Customer
+//				count - int representation of the number of id's
+// Returns: void
 void sortCust(Customer cust[], int count)
 {
 	//Variables

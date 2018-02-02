@@ -203,9 +203,15 @@ void updateCust(Customer cust[], int count, int cust_edit, int foundcust)
 		cout << "Add a new zip for the customer " << cust[foundcust].id << " : ";
 		cin >> cust[foundcust].zip;
 
-		cout << "Add a new balance for the customer " << cust[foundcust].id << " : ";
-		cin >> cust[foundcust].balance;
-		//validate
+		do
+		{
+			cout << "Add a new balance for the customer " << cust[foundcust].id << " : ";
+			cin >> cust[foundcust].balance;
+			if (cust[foundcust].balance < 0)
+			{
+				cout << "Enter an ID that is greater than -1\n";
+			}
+		} while (cust[foundcust].balance < 0);
 
 		cout << "Add a new payment date for the customer " << cust[foundcust].id << " : ";
 		cin >> cust[foundcust].pmtDate;

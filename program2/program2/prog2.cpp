@@ -160,7 +160,7 @@ string menu(string & choice)
 // Returns: void
 void addCust(Customer cust[], int count)
 {
-	
+	bool isAlready = false;
 	int i = count;
 	//add id, name, zip, balance, pmtDate
 	//validation for id
@@ -169,12 +169,19 @@ void addCust(Customer cust[], int count)
 		cout << "Add an ID for the new customer : ";
 		cin >> cust[i].id;
 		cout << cust[i].id << endl;
-
+		for (int k = 0; k < count; k++)
+		{
+			if (cust[i].id == cust[k].id)
+			{
+				cout << "An ID already exists for that number\n";
+				bool isAlready = true;
+			}
+		}
 		if (cust[i].id < 0)
 		{
 			cout << "Enter an ID that is greater than -1\n";
 		}
-	} while (cust[i].id < 0);
+	} while (cust[i].id < 0 && !isAlready);
 
 	cout << "Add a name for the new customer : ";
 	cin.ignore();
@@ -218,7 +225,6 @@ void updateCust(Customer cust[], int count, int cust_edit, int foundcust)
 {
 	if (foundcust != -1)
 	{
-		int i = count;
 		//edit name, zip, balance, pmtDate
 
 		cout << "Add a new name for customer " << cust[foundcust].id << " : ";

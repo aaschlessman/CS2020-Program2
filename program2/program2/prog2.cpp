@@ -174,14 +174,18 @@ void addCust(Customer cust[], int count)
 			if (cust[i].id == cust[k].id)
 			{
 				cout << "An ID already exists for that number\n";
-				bool isAlready = true;
+				isAlready = true;
+			}
+			else
+			{
+				isAlready = false;
 			}
 		}
 		if (cust[i].id < 0)
 		{
 			cout << "Enter an ID that is greater than -1\n";
 		}
-	} while (cust[i].id < 0 && !isAlready);
+	} while (cust[i].id < 0 || isAlready == true);
 
 	cout << "Add a name for the new customer : ";
 	cin.ignore();

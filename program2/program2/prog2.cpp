@@ -59,6 +59,7 @@ int main()
 		{
 			cout << "Enter an id to edit : ";
 			cin >> cust_edit;
+			cout << cust_edit << endl;
 
 			updateCust(cust, count, cust_edit, findCust(cust, count, cust_edit));
 		}
@@ -73,6 +74,7 @@ int main()
 			//choice 4 validation
 			cout << "Enter an id : ";
 			cin >> cust_id;
+			cout << cust_id << endl;
 			cust_index = findCust(cust, count, cust_id);
 
 			if (cust_index != -1)
@@ -129,6 +131,8 @@ string menu(string & choice)
 		cout << "Enter a choice : ";
 		//cin.ignore();
 		getline(cin, choice);
+		cout << choice << endl;
+
 		if (choice == "1" || choice == "2" || choice == "3" || choice == "4" || choice == "5")
 		{
 			isValid = true;
@@ -164,6 +168,8 @@ void addCust(Customer cust[], int count)
 	{
 		cout << "Add an ID for the new customer : ";
 		cin >> cust[i].id;
+		cout << cust[i].id << endl;
+
 		if (cust[i].id < 0)
 		{
 			cout << "Enter an ID that is greater than -1\n";
@@ -173,15 +179,19 @@ void addCust(Customer cust[], int count)
 	cout << "Add a name for the new customer : ";
 	cin.ignore();
 	getline(cin, cust[i].name);
+	cout << cust[i].name << endl;
 
 	cout << "Add a zip for the new customer : ";
 	cin >> cust[i].zip;
+	cout << cust[i].zip << endl;
 
 	//validation for balance
 	do
 	{
 		cout << "Add a balance for the new customer : ";
 		cin >> cust[i].balance;
+		cout << cust[i].balance << endl;
+
 		if (cust[i].balance < 0)
 		{
 			cout << "Enter a balance that is greater than -1\n";
@@ -190,6 +200,7 @@ void addCust(Customer cust[], int count)
 
 	cout << "Add a payment date for the new customer : ";
 	cin >> cust[i].pmtDate;
+	cout << cust[i].pmtDate << endl;
 
 	cin.ignore();
 }
@@ -213,15 +224,19 @@ void updateCust(Customer cust[], int count, int cust_edit, int foundcust)
 		cout << "Add a new name for customer " << cust[foundcust].id << " : ";
 		//cin.ignore();
 		getline(cin, cust[foundcust].name);
+		cout << cust[foundcust].name << endl;
 
 		cout << "Add a new zip for customer " << cust[foundcust].id << " : ";
 		cin >> cust[foundcust].zip;
+		cout << cust[foundcust].zip << endl;
 
 		//validation for new balance
 		do
 		{
 			cout << "Add a new balance for customer " << cust[foundcust].id << " : ";
 			cin >> cust[foundcust].balance;
+			cout << cust[foundcust].balance << endl;
+
 			if (cust[foundcust].balance < 0)
 			{
 				cout << "Enter a balance that is greater than -1\n";
@@ -230,6 +245,7 @@ void updateCust(Customer cust[], int count, int cust_edit, int foundcust)
 
 		cout << "Add a new payment date for customer " << cust[foundcust].id << " : ";
 		cin >> cust[foundcust].pmtDate;
+		cout << cust[foundcust].pmtDate << endl;
 
 		cin.ignore();
 	}
